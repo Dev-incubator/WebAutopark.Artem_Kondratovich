@@ -2,7 +2,7 @@
 
 namespace WebAutopark.Core.Entities
 {
-    internal class Vehicle
+    public class Vehicle
     {
         public int Id { get; }
         public int VehicleTypeId { get; }
