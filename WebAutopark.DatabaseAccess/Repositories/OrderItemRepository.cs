@@ -6,16 +6,16 @@ namespace WebAutopark.DatabaseAccess.Repositories
 {
     internal class OrderItemRepository : BaseRepository, IRepository<OrderItem>
     {
-        private readonly string QueryCreate = "INSERT INTO OrderItems (OrderId, ComponentId, Quantity) " +
+        private const string QueryCreate = "INSERT INTO OrderItems (OrderId, ComponentId, Quantity) " +
                                               "VALUES (@OrderId, @ComponentId, @Quantity)";
 
-        private readonly string QueryDelete = "DELETE FROM OrderItems WHERE OrderItemId = @id";
+        private const string QueryDelete = "DELETE FROM OrderItems WHERE OrderItemId = @id";
 
-        private readonly string QueryGetById = "SELECT * FROM OrderItems WHERE OrderItemId = @id";
+        private const string QueryGetById = "SELECT * FROM OrderItems WHERE OrderItemId = @id";
 
-        private readonly string QueryGetAll = "SELECT * FROM OrderItems";
+        private const string QueryGetAll = "SELECT * FROM OrderItems";
 
-        private readonly string QueryUpdate = "UPDATE OrderItems SET " +
+        private const string QueryUpdate = "UPDATE OrderItems SET " +
                                               "OrderId = @OrderId, " +
                                               "ComponentId = @ComponentId, " +
                                               "Quantity = @Quantity " +
@@ -27,7 +27,7 @@ namespace WebAutopark.DatabaseAccess.Repositories
 
         public void Create(OrderItem item) => Connection.Execute(QueryCreate, item);
 
-        public void Delete(int id) => Connection.Execute(QueryDelete, id);
+        public void Delete(int id) => Connection.Execute(QueryDelete, new { id });
 
         public void Update(OrderItem item) => Connection.Execute(QueryUpdate, item);
 

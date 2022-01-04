@@ -6,15 +6,15 @@ namespace WebAutopark.DatabaseAccess.Repositories
 {
     public class VehicleTypeRepository : BaseRepository, IRepository<VehicleType>
     {
-        private readonly string QueryCreate = "INSERT INTO VehicleTypes (Name) VALUES (@Name)";
+        private const string QueryCreate = "INSERT INTO VehicleTypes (Name) VALUES (@Name)";
 
-        private readonly string QueryDelete = "DELETE FROM VehicleTypes WHERE VehicleTypeId = @id";
+        private const string QueryDelete = "DELETE FROM VehicleTypes WHERE VehicleTypeId = @id";
 
-        private readonly string QueryGetById = "SELECT * FROM VehicleTypes WHERE VehicleTypeId = @id";
+        private const string QueryGetById = "SELECT * FROM VehicleTypes WHERE VehicleTypeId = @id";
 
-        private readonly string QueryGetAll = "SELECT * FROM VehicleTypes";
+        private const string QueryGetAll = "SELECT * FROM VehicleTypes";
 
-        private readonly string QueryUpdate = "UPDATE VehicleTypes SET Name = @Name WHERE VehicleTypeId = @VehicleTypeId";
+        private const string QueryUpdate = "UPDATE VehicleTypes SET Name = @Name WHERE VehicleTypeId = @VehicleTypeId";
 
         public VehicleTypeRepository(IConnectionStringProvider connectionStringProvider) :
             base(connectionStringProvider)
@@ -22,7 +22,7 @@ namespace WebAutopark.DatabaseAccess.Repositories
 
         public void Create(VehicleType item) => Connection.Execute(QueryCreate, item);
 
-        public void Delete(int id) => Connection.Execute(QueryDelete, id);
+        public void Delete(int id) => Connection.Execute(QueryDelete, new { id });
 
         public void Update(VehicleType item) => Connection.Execute(QueryUpdate, item);
 

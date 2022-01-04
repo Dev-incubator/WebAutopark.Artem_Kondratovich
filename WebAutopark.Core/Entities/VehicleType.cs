@@ -2,8 +2,8 @@
 {
     public class VehicleType
     {
-        public int Id { get; }
-        public string TypeName { get; }
-        public double TaxCoefficient { get; }
+        public int Id { get; set; }
+        public string TypeName { get; set; }
+        public double TaxCoefficient { get; set; }
     }
 }

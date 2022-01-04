@@ -22,7 +22,7 @@ namespace WebAutopark.DatabaseAccess.Repositories
 
         public void Create(Component item) => Connection.Execute(QueryCreate, item);
 
-        public void Delete(int id) => Connection.Execute(QueryDelete, id);
+        public void Delete(int id) => Connection.Execute(QueryDelete, new { id });
 
         public void Update(Component item) => Connection.Execute(QueryUpdate, item);
 

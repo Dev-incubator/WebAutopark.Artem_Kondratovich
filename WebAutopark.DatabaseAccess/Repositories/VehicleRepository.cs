@@ -31,7 +31,7 @@ namespace WebAutopark.DatabaseAccess.Repositories
 
         public void Create(Vehicle item) => Connection.Execute(QueryCreate, item);
 
-        public void Delete(int id) => Connection.Execute(QueryDelete, id);
+        public void Delete(int id) => Connection.Execute(QueryDelete, new { id });
 
         public void Update(Vehicle item) => Connection.Execute(QueryUpdate, item);
 

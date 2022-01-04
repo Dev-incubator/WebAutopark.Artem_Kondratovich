@@ -2,7 +2,7 @@
 {
     public class Component
     {
-        public int ComponentId { get; }
-        public string Name { get; }
+        public int ComponentId { get; set; }
+        public string Name { get; set; }
     }
 }
