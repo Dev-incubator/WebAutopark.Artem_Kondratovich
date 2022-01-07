@@ -1,4 +1,5 @@
 ﻿using Dapper;
+using System.Collections.Generic;
 using WebAutopark.Core.Entities;
 using WebAutopark.Core.Interfaces;
 

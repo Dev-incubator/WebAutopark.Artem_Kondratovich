@@ -3,6 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAutopark.Core.Entities;
+using WebAutopark.Core.Interfaces;
+using WebAutopark.DatabaseAccess;
+using WebAutopark.DatabaseAccess.Repositories;
 
 namespace WebAutopark
 {
@@ -18,6 +22,12 @@ namespace WebAutopark
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
+            services.AddScoped<IRepository<Component>, ComponentRepository>();
+            services.AddScoped<IRepository<Vehicle>, VehicleRepository>();
+            services.AddScoped<IRepository<VehicleType>, VehicleTypeRepository>();
+            services.AddScoped<IRepository<Order>, OrderRepository>();
+            services.AddScoped<IRepository<OrderItem>, OrderItemRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

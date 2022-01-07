@@ -1,4 +1,6 @@
-﻿namespace WebAutopark.Core.Interfaces
+﻿using System.Collections.Generic;
+
+namespace WebAutopark.Core.Interfaces
 {
     public interface IRepository<T>
         where T : class

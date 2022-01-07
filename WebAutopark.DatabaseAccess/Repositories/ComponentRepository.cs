@@ -1,10 +1,11 @@
 ﻿using Dapper;
+using System.Collections.Generic;
 using WebAutopark.Core.Entities;
 using WebAutopark.Core.Interfaces;
 
 namespace WebAutopark.DatabaseAccess.Repositories
 {
-    internal class ComponentRepository : BaseRepository, IRepository<Component>
+    public class ComponentRepository : BaseRepository, IRepository<Component>
     {
         private const string QueryCreate = "INSERT INTO Components (Name) VALUES (@Name)";
 
