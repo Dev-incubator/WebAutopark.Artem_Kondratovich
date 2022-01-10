@@ -1,10 +1,11 @@
 ﻿using Dapper;
+using System.Collections.Generic;
 using WebAutopark.Core.Entities;
 using WebAutopark.Core.Interfaces;
 
 namespace WebAutopark.DatabaseAccess.Repositories
 {
-    internal class OrderItemRepository : BaseRepository, IRepository<OrderItem>
+    public class OrderItemRepository : BaseRepository, IRepository<OrderItem>
     {
         private const string QueryCreate = "INSERT INTO OrderItems (OrderId, ComponentId, Quantity) " +
                                               "VALUES (@OrderId, @ComponentId, @Quantity)";

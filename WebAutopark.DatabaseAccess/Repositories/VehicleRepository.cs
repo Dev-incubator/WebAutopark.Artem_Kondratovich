@@ -1,10 +1,11 @@
 ﻿using WebAutopark.Core.Interfaces;
 using WebAutopark.Core.Entities;
 using Dapper;
+using System.Collections.Generic;
 
 namespace WebAutopark.DatabaseAccess.Repositories
 {
-    internal class VehicleRepository : BaseRepository, IRepository<Vehicle>
+    public class VehicleRepository : BaseRepository, IRepository<Vehicle>
     {
         private const string QueryCreate = "INSERT INTO Vehicles (VehicleTypeId, Model, RegistrationNumber, Weight, Year, Mileage, Color) " +
                                              "VALUES (@VehicleTypeId, @Model, @RegistrationNumber, @Weight, @Year, @Mileage, @Color)";
