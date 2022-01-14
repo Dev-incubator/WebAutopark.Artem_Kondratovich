@@ -1,6 +1,6 @@
-﻿namespace WebAutopark.Core.Entities
+﻿namespace WebAutopark.Models
 {
-    public class VehicleType
+    public class VehicleTypeViewModel
     {
         public int VehicleTypeId { get; set; }
         public string TypeName { get; set; }

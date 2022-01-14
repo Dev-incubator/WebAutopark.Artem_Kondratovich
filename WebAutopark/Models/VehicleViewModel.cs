@@ -1,8 +1,8 @@
 ﻿using WebAutopark.Core.Enums;
 
-namespace WebAutopark.Core.Entities
+namespace WebAutopark.Models
 {
-    public class Vehicle
+    public class VehicleViewModel
     {
         public int VehicleId { get; set; }
         public int VehicleTypeId { get; set; }
