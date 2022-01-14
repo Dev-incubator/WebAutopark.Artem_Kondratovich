@@ -14,6 +14,7 @@ CREATE TABLE [VehicleTypes]
 (
 	[VehicleTypeId] INT NOT NULL IDENTITY(1,1),
 	[Name] NVARCHAR(50) NOT NULL,
+	[TaxCoefficient] FLOAT NOT NULL,
 
 	CONSTRAINT [PK_VehicleTypes] PRIMARY KEY CLUSTERED([VehicleTypeId] ASC)
 )

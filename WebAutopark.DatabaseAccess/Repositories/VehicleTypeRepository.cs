@@ -7,7 +7,7 @@ namespace WebAutopark.DatabaseAccess.Repositories
 {
     public class VehicleTypeRepository : BaseRepository, IRepository<VehicleType>
     {
-        private const string QueryCreate = "INSERT INTO VehicleTypes (Name) VALUES (@Name)";
+        private const string QueryCreate = "INSERT INTO VehicleTypes (Name, TaxCoefficient) VALUES (@Name, @TaxCoefficient)";
 
         private const string QueryDelete = "DELETE FROM VehicleTypes WHERE VehicleTypeId = @id";
 
@@ -15,7 +15,10 @@ namespace WebAutopark.DatabaseAccess.Repositories
 
         private const string QueryGetAll = "SELECT * FROM VehicleTypes";
 
-        private const string QueryUpdate = "UPDATE VehicleTypes SET Name = @Name WHERE VehicleTypeId = @VehicleTypeId";
+        private const string QueryUpdate = "UPDATE VehicleTypes SET " +
+                                               "Name = @Name, " +
+                                               "TaxCoefficient = @TaxCoefficient " +
+                                               "WHERE VehicleTypeId = @VehicleTypeId";
 
         public VehicleTypeRepository(IConnectionStringProvider connectionStringProvider) :
             base(connectionStringProvider)
