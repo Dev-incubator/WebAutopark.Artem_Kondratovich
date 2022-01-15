@@ -9,7 +9,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark.DatabaseAccess"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAutopark.Core", "WebAutopark.Core\WebAutopark.Core.csproj", "{D1A35257-7949-4FF0-9AA8-B34BF6ED5FCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAutoprk.BusinessLogic", "WebAutoprk.BusinessLogic\WebAutoprk.BusinessLogic.csproj", "{555A4292-199B-44B4-BBC5-FF5966C00A25}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAutopark.BusinessLogic", "WebAutoprk.BusinessLogic\WebAutopark.BusinessLogic.csproj", "{555A4292-199B-44B4-BBC5-FF5966C00A25}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

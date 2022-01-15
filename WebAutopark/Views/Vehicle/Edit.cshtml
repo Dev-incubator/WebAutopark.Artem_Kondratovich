@@ -1,0 +1,62 @@
+﻿@model VehicleViewModel
+
+<form method="post" asp-action="Edit">
+    <input type="hidden" name="VehicleId" value="@Model.VehicleId">
+    <input type="hidden" name="VehicleTypeId" value="@Model.VehicleTypeId">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Model</th>
+                <td>
+                    <input type="text" name="Model" value="@Model.Model">
+                </td>
+            </tr>
+            <tr>
+                <th>RegistrationNumber</th>
+                <td>
+                    <input type="text" name="RegistrationNumber" value="@Model.RegistrationNumber">
+                </td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>
+                    <input type="text" name="Weight" value="@Model.Weight">
+                </td>
+            </tr>
+            <tr>
+                <th>YearIssue</th>
+                <td>
+                    <input type="text" name="YearIssue" id="datepicker" value="@Model.YearIssue" />
+                </td>
+            </tr>
+            <tr>
+                <th>Mileage</th>
+                <td>
+                    <input type="text" name="Mileage" value="@Model.Mileage">
+                </td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>
+                    @Html.DropDownListFor(m => m.Color,
+                    new SelectList(Enum.GetValues(typeof(CarColor))))
+                </td>
+            </tr>
+            <tr>
+                <th>TankCapacity</th>
+                <td>
+                    <input type="text" name="TankCapacity" value="@Model.TankCapacity">
+                </td>
+            </tr>
+            <tr>
+                <th>FuelConsumption</th>
+                <td>
+                    <input type="text" name="FuelConsumption" value="@Model.FuelConsumption">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-outline-primary">Edit vehicle</button>
+    <button type="reset" class="btn btn-outline-dark">Reset</button>
+</form>
+

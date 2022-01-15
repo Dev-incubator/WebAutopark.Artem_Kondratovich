@@ -1,83 +1,96 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Collections.Generic;
+using WebAutopark.BusinessLogic.Dto;
+using WebAutopark.Core.Interfaces;
+using WebAutopark.Models;
 
 namespace WebAutopark.Controllers
 {
     public class VehicleController : Controller
     {
-        // GET: VehicleController
+        private readonly IMapper _mapper;
+        private readonly IDtoService<VehicleDto> _vehicleDtoService;
+        private readonly IDtoService<VehicleTypeDto> _vehicleTypeDtoService;
+
+        public VehicleController(IMapper mapper,
+            IDtoService<VehicleDto> vehicleDtoService,
+            IDtoService<VehicleTypeDto> vehicleTypeDtoService)
+        {
+            _mapper = mapper;
+            _vehicleDtoService = vehicleDtoService;
+            _vehicleTypeDtoService = vehicleTypeDtoService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            var vehicleDtoItems = _vehicleDtoService.GetAllItems();
+            var vehicleViewModels = _mapper.Map<IEnumerable<VehicleViewModel>>(vehicleDtoItems);
+            return View(vehicleViewModels);
         }
 
-        // GET: VehicleController/Details/5
         public ActionResult Details(int id)
         {
-            return View();
+            var vehicleDto = _vehicleDtoService.GetItem(id);
+            var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleDto);
+
+            return View(vehicleViewModel);
         }
 
-        // GET: VehicleController/Create
         public ActionResult Create()
         {
+            var vehicleTypeDtoItems = _vehicleTypeDtoService.GetAllItems();
+            var selectItems = new List<SelectListItem>();
+            foreach (var vehicleType in vehicleTypeDtoItems)
+            {
+                selectItems.Add(new SelectListItem { Text = vehicleType.TypeName, Value = vehicleType.VehicleTypeId.ToString() });
+            }
+            ViewBag.VehicleTypes = selectItems;
             return View();
         }
 
-        // POST: VehicleController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(VehicleViewModel vehicleViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+                _vehicleDtoService.Create(vehicleDto);
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: VehicleController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var vehicleDto = _vehicleDtoService.GetItem(id);
+            var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleDto);
+
+            return View(vehicleViewModel);
         }
 
-        // POST: VehicleController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(VehicleViewModel vehicleViewModel)
         {
-            try
+            if (ModelState.IsValid)
             {
-                return RedirectToAction(nameof(Index));
+                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+                _vehicleDtoService.Update(vehicleDto);
             }
-            catch
-            {
-                return View();
-            }
+
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: VehicleController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: VehicleController/Delete/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Delete(int vehicleId)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            _vehicleDtoService.Delete(vehicleId);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

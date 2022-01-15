@@ -3,10 +3,13 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using WebAutopark.BusinessLogic.Dto;
+using WebAutopark.BusinessLogic.Services;
 using WebAutopark.Core.Entities;
 using WebAutopark.Core.Interfaces;
 using WebAutopark.DatabaseAccess;
 using WebAutopark.DatabaseAccess.Repositories;
+using WebAutopark.Mappings;
 
 namespace WebAutopark
 {
@@ -28,6 +31,11 @@ namespace WebAutopark
             services.AddScoped<IRepository<VehicleType>, VehicleTypeRepository>();
             services.AddScoped<IRepository<Order>, OrderRepository>();
             services.AddScoped<IRepository<OrderItem>, OrderItemRepository>();
+
+            services.AddScoped<IDtoService<VehicleDto>, VehicleService>();
+            services.AddScoped<IDtoService<VehicleTypeDto>, VehicleTypeService>();
+
+            services.AddAutoMapper(typeof(DtoEntityProfile), typeof(ViewModelDtoProfile));
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

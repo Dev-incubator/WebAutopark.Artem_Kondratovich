@@ -1,35 +1,51 @@
-﻿using System.Collections.Generic;
+﻿using AutoMapper;
+using System.Collections.Generic;
 using WebAutopark.Core.Interfaces;
 
-namespace WebAutoprk.BusinessLogic.Services
+namespace WebAutopark.BusinessLogic.Services
 {
-    public class BaseService<TDto, TEntity> : IDtoService<TDto>
+    public abstract class BaseService<TDto, TEntity> : IDtoService<TDto>
         where TDto : class
         where TEntity : class
     {
+        protected readonly IMapper _mapper;
+        protected readonly IRepository<TEntity> _repository;
+
+        public BaseService(IMapper mapper, IRepository<TEntity> repository)
+        {
+            _mapper = mapper;
+            _repository = repository;
+        }
+
         public void Create(TDto item)
         {
-            throw new System.NotImplementedException();
+            var entityItem = _mapper.Map<TEntity>(item);
+            _repository.Create(entityItem);
         }
 
         public void Delete(int id)
         {
-            throw new System.NotImplementedException();
+            _repository.Delete(id);
         }
 
         public IEnumerable<TDto> GetAllItems()
         {
-            throw new System.NotImplementedException();
+            var entities = _repository.GetAllItems();
+            var dtoItems = _mapper.Map<IEnumerable<TDto>>(entities);
+            return dtoItems;
         }
 
         public TDto GetItem(int id)
         {
-            throw new System.NotImplementedException();
+            var entityItem = _repository.GetItem(id);
+            var dtoItem = _mapper.Map<TDto>(entityItem);
+            return dtoItem;
         }
 
         public void Update(TDto item)
         {
-            throw new System.NotImplementedException();
+            var entityItem = _mapper.Map<TEntity>(item);
+            _repository.Update(entityItem);
         }
     }
 }

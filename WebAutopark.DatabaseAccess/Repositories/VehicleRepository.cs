@@ -7,8 +7,8 @@ namespace WebAutopark.DatabaseAccess.Repositories
 {
     public class VehicleRepository : BaseRepository, IRepository<Vehicle>
     {
-        private const string QueryCreate = "INSERT INTO Vehicles (VehicleTypeId, Model, RegistrationNumber, Weight, Year, Mileage, Color) " +
-                                             "VALUES (@VehicleTypeId, @Model, @RegistrationNumber, @Weight, @Year, @Mileage, @Color)";
+        private const string QueryCreate = "INSERT INTO Vehicles (VehicleTypeId, Model, RegistrationNumber, Weight, YearIssue, Mileage, Color, FuelConsumption) " +
+                                             "VALUES (@VehicleTypeId, @Model, @RegistrationNumber, @Weight, @YearIssue, @Mileage, @Color, @FuelConsumption)";
 
         private const string QueryDelete = "DELETE FROM Vehicles WHERE VehicleId = @id";
 
@@ -16,14 +16,15 @@ namespace WebAutopark.DatabaseAccess.Repositories
 
         private const string QueryGetAll = "SELECT * FROM Vehicles";
 
-        private const string QueryUpdate = "UPDATE Vehicle SET " +
+        private const string QueryUpdate = "UPDATE Vehicles SET " +
                                               "VehicleTypeId = @VehicleTypeId, " +
                                               "Model = @Model, " +
                                               "RegistrationNumber = @RegistrationNumber, " +
                                               "Weight = @Weight, " +
-                                              "Year = @Year, " +
+                                              "YearIssue = @YearIssue, " +
                                               "Mileage = @Mileage, " +
-                                              "Color = @Color" +
+                                              "Color = @Color, " +
+                                              "FuelConsumption = @FuelConsumption " +
                                               "WHERE VehicleId = @VehicleId";
 
         public VehicleRepository(IConnectionStringProvider connectionStringProvider) :

@@ -1,0 +1,38 @@
+﻿@model VehicleViewModel
+
+<p class="display-4">@Model.Model</p>
+
+<table class="table">
+    <tbody>
+        <tr>
+            <th>RegistrationNumber</th>
+            <td>@Model.RegistrationNumber</td>
+        </tr>
+        <tr>
+            <th>Weight</th>
+            <td>@Model.Weight</td>
+        </tr>
+        <tr>
+            <th>YearIssue</th>
+            <td>@Model.YearIssue</td>
+        </tr>
+        <tr>
+            <th>Mileage</th>
+            <td>@Model.YearIssue</td>
+        </tr>
+        <tr>
+            <th>Color</th>
+            <td>@Model.Color</td>
+        </tr>
+        <tr>
+            <th>TankCapacity</th>
+            <td>@Model.TankCapacity</td>
+        </tr>
+        <tr>
+            <th>FuelConsumption</th>
+            <td>@Model.FuelConsumption</td>
+        </tr>
+    </tbody>
+</table>
+
+<a type="button" asp-action="Edit" asp-route-id="@Model.VehicleId" class="btn btn-outline-dark">Edit vehicle</a>

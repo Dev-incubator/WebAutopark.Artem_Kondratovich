@@ -1,0 +1,66 @@
+﻿@model VehicleViewModel
+
+<form method="post" asp-action="Create">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Model</th>
+                <td>
+                    <input type="text" name="Model">
+                </td>
+            </tr>
+            <tr>
+                <th>VehicleType</th>
+                <td>
+                    @Html.DropDownListFor(m => m.VehicleTypeId,
+                    (IEnumerable<SelectListItem>)ViewBag.VehicleTypes)
+                </td>
+            </tr>
+            <tr>
+                <th>RegistrationNumber</th>
+                <td>
+                    <input type="text" name="RegistrationNumber">
+                </td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>
+                    <input type="text" name="Weight">
+                </td>
+            </tr>
+            <tr>
+                <th>YearIssue</th>
+                <td>
+                    <input type="text" name="YearIssue" id="datepicker" />
+                </td>
+            </tr>
+            <tr>
+                <th>Mileage</th>
+                <td>
+                    <input type="text" name="Mileage">
+                </td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>
+                    @Html.DropDownListFor(m => m.Color,
+                    new SelectList(Enum.GetValues(typeof(CarColor))))
+                </td>
+            </tr>
+            <tr>
+                <th>TankCapacity</th>
+                <td>
+                    <input type="text" name="TankCapacity">
+                </td>
+            </tr>
+            <tr>
+                <th>FuelConsumption</th>
+                <td>
+                    <input type="text" name="FuelConsumption">
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-outline-primary">Create vehicle</button>
+    <button type="reset" class="btn btn-outline-dark">Reset</button>
+</form>

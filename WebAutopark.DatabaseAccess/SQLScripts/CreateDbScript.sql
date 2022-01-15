@@ -26,9 +26,10 @@ CREATE TABLE [Vehicles]
 	[Model] NVARCHAR(50) NOT NULL,
 	[RegistrationNumber] NVARCHAR(10) NOT NULL,
 	[Weight] FLOAT NOT NULL,
-	[Year] INT NOT NULL,
+	[YearIssue] INT NOT NULL,
 	[Mileage] FLOAT NOT NULL,
 	[Color] INT NOT NULL,
+	[FuelConsumption] FLOAT NOT NULL,
 
 	CONSTRAINT [PK_Vehicles] PRIMARY KEY CLUSTERED([VehicleId] ASC),
 	CONSTRAINT [FK_Vehicles_VehicleTypes] FOREIGN KEY([VehicleTypeId]) REFERENCES [VehicleTypes]([VehicleTypeId]) ON DELETE CASCADE ON UPDATE CASCADE
@@ -38,6 +39,7 @@ CREATE TABLE [Orders]
 (
 	[OrderId] INT NOT NULL IDENTITY(1,1),
 	[VehicleId] INT NOT NULL,
+	[Date] DATETIME NOT NULL,
 
 	CONSTRAINT [PK_Orders] PRIMARY KEY CLUSTERED([OrderId] ASC),
 	CONSTRAINT [FK_Orders_Vehicles] FOREIGN KEY([VehicleId]) REFERENCES [Vehicles]([VehicleId]) ON DELETE CASCADE ON UPDATE CASCADE
