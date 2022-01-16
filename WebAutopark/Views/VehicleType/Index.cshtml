@@ -1,1 +1,32 @@
-﻿<h1>VehicleType Index view</h1>
+﻿@model IEnumerable<VehicleTypeViewModel>;
+
+<h1 class="display-4">Vehicle types</h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>TypeName</th>
+            <th>TaxCoefficient</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vehicleType in Model)
+        {
+            <tr>
+                <td>@vehicleType.TypeName</td>
+                <td>@vehicleType.TaxCoefficient</td>
+                <td>
+                    <div class="btn-group">
+                        <form method="post" asp-action="Delete">
+                            <input type="hidden" name="vehicleTypeId" value=@vehicleType.VehicleTypeId>
+                            <a type="button" asp-action="Edit" asp-route-id="@vehicleType.VehicleTypeId" class="btn btn-secondary">Edit</a>
+                            <button type="submit" class="btn btn-dark">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a type="button" asp-action="Create" class="btn btn-outline-dark btn-lg btn-block">Add vehicle type</a>

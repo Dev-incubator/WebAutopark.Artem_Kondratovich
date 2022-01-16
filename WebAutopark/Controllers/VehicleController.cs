@@ -1,5 +1,4 @@
 ﻿using AutoMapper;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
@@ -24,6 +23,17 @@ namespace WebAutopark.Controllers
             _vehicleTypeDtoService = vehicleTypeDtoService;
         }
 
+        private List<SelectListItem> GetVehicleTypesForSelect()
+        {
+            var vehicleTypeDtoItems = _vehicleTypeDtoService.GetAllItems();
+            var selectItems = new List<SelectListItem>();
+            foreach (var vehicleType in vehicleTypeDtoItems)
+            {
+                selectItems.Add(new SelectListItem { Text = vehicleType.TypeName, Value = vehicleType.VehicleTypeId.ToString() });
+            }
+            return selectItems;
+        }
+
         public ActionResult Index()
         {
             var vehicleDtoItems = _vehicleDtoService.GetAllItems();
@@ -34,20 +44,19 @@ namespace WebAutopark.Controllers
         public ActionResult Details(int id)
         {
             var vehicleDto = _vehicleDtoService.GetItem(id);
+
+            if (vehicleDto is null)
+                return NotFound();
+
             var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleDto);
+            ViewBag.VehicleType = _vehicleTypeDtoService.GetItem(vehicleDto.VehicleTypeId);
 
             return View(vehicleViewModel);
         }
 
         public ActionResult Create()
         {
-            var vehicleTypeDtoItems = _vehicleTypeDtoService.GetAllItems();
-            var selectItems = new List<SelectListItem>();
-            foreach (var vehicleType in vehicleTypeDtoItems)
-            {
-                selectItems.Add(new SelectListItem { Text = vehicleType.TypeName, Value = vehicleType.VehicleTypeId.ToString() });
-            }
-            ViewBag.VehicleTypes = selectItems;
+            ViewBag.VehicleTypes = GetVehicleTypesForSelect();
             return View();
         }
 
@@ -55,19 +64,26 @@ namespace WebAutopark.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(VehicleViewModel vehicleViewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
-                _vehicleDtoService.Create(vehicleDto);
+                ViewBag.VehicleTypes = GetVehicleTypesForSelect();
+                return View();
             }
 
+            var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+            _vehicleDtoService.Create(vehicleDto);
             return RedirectToAction(nameof(Index));
         }
 
         public ActionResult Edit(int id)
         {
             var vehicleDto = _vehicleDtoService.GetItem(id);
+
+            if (vehicleDto is null)
+                return NotFound();
+
             var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleDto);
+            ViewBag.VehicleTypes = GetVehicleTypesForSelect();
 
             return View(vehicleViewModel);
         }
@@ -76,12 +92,14 @@ namespace WebAutopark.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(VehicleViewModel vehicleViewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
-                _vehicleDtoService.Update(vehicleDto);
+                ViewBag.VehicleTypes = GetVehicleTypesForSelect();
+                return View();
             }
 
+            var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
+            _vehicleDtoService.Update(vehicleDto);
             return RedirectToAction(nameof(Index));
         }
 

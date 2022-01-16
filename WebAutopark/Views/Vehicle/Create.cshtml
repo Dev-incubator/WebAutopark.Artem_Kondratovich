@@ -1,12 +1,13 @@
 ﻿@model VehicleViewModel
 
-<form method="post" asp-action="Create">
+<form asp-antiforgery="true" method="post" asp-action="Create">
     <table class="table">
         <tbody>
             <tr>
                 <th>Model</th>
                 <td>
-                    <input type="text" name="Model">
+                    <input type="text" asp-for="Model">
+                    <span class="text-danger" asp-validation-for="Model"></span>
                 </td>
             </tr>
             <tr>
@@ -19,25 +20,29 @@
             <tr>
                 <th>RegistrationNumber</th>
                 <td>
-                    <input type="text" name="RegistrationNumber">
+                    <input type="text" asp-for="RegistrationNumber">
+                    <span class="text-danger" asp-validation-for="RegistrationNumber"></span>
                 </td>
             </tr>
             <tr>
                 <th>Weight</th>
                 <td>
-                    <input type="text" name="Weight">
+                    <input type="text" asp-for="Weight">
+                    <span class="text-danger" asp-validation-for="Weight"></span>
                 </td>
             </tr>
             <tr>
                 <th>YearIssue</th>
                 <td>
-                    <input type="text" name="YearIssue" id="datepicker" />
+                    <input type="text" asp-for="YearIssue" id="datepicker" />
+                    <span class="text-danger" asp-validation-for="YearIssue"></span>
                 </td>
             </tr>
             <tr>
                 <th>Mileage</th>
                 <td>
-                    <input type="text" name="Mileage">
+                    <input type="text" asp-for="Mileage">
+                    <span class="text-danger" asp-validation-for="Mileage"></span>
                 </td>
             </tr>
             <tr>
@@ -48,15 +53,10 @@
                 </td>
             </tr>
             <tr>
-                <th>TankCapacity</th>
-                <td>
-                    <input type="text" name="TankCapacity">
-                </td>
-            </tr>
-            <tr>
                 <th>FuelConsumption</th>
                 <td>
-                    <input type="text" name="FuelConsumption">
+                    <input type="text" asp-for="FuelConsumption">
+                    <span class="text-danger" asp-validation-for="FuelConsumption"></span>
                 </td>
             </tr>
         </tbody>

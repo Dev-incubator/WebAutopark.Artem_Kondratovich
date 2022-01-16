@@ -12,7 +12,6 @@ namespace WebAutopark.Core.Entities
         public int YearIssue { get; set; }
         public double Mileage { get; set; }
         public CarColor Color { get; set; }
-        public double TankCapacity { get; set; }
         public double FuelConsumption { get; set; }
     }
 }

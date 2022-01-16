@@ -8,31 +8,43 @@
             <tr>
                 <th>Model</th>
                 <td>
-                    <input type="text" name="Model" value="@Model.Model">
+                    <input type="text" asp-for="Model" value="@Model.Model">
+                    <span class="text-danger" asp-validation-for="Model"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>VehicleType</th>
+                <td>
+                    @Html.DropDownListFor(m => m.VehicleTypeId,
+                    (IEnumerable<SelectListItem>)ViewBag.VehicleTypes)
                 </td>
             </tr>
             <tr>
                 <th>RegistrationNumber</th>
                 <td>
-                    <input type="text" name="RegistrationNumber" value="@Model.RegistrationNumber">
+                    <input type="text" asp-for="RegistrationNumber" value="@Model.RegistrationNumber">
+                    <span class="text-danger" asp-validation-for="RegistrationNumber"></span>
                 </td>
             </tr>
             <tr>
                 <th>Weight</th>
                 <td>
-                    <input type="text" name="Weight" value="@Model.Weight">
+                    <input type="text" asp-for="Weight" value="@Model.Weight">
+                    <span class="text-danger" asp-validation-for="Weight"></span>
                 </td>
             </tr>
             <tr>
                 <th>YearIssue</th>
                 <td>
-                    <input type="text" name="YearIssue" id="datepicker" value="@Model.YearIssue" />
+                    <input type="text" asp-for="YearIssue" id="datepicker" value="@Model.YearIssue" />
+                    <span class="text-danger" asp-validation-for="YearIssue"></span>
                 </td>
             </tr>
             <tr>
                 <th>Mileage</th>
                 <td>
-                    <input type="text" name="Mileage" value="@Model.Mileage">
+                    <input type="text" asp-for="Mileage" value="@Model.Mileage">
+                    <span class="text-danger" asp-validation-for="Mileage"></span>
                 </td>
             </tr>
             <tr>
@@ -43,15 +55,10 @@
                 </td>
             </tr>
             <tr>
-                <th>TankCapacity</th>
-                <td>
-                    <input type="text" name="TankCapacity" value="@Model.TankCapacity">
-                </td>
-            </tr>
-            <tr>
                 <th>FuelConsumption</th>
                 <td>
-                    <input type="text" name="FuelConsumption" value="@Model.FuelConsumption">
+                    <input type="text" asp-for="FuelConsumption" value="@Model.FuelConsumption">
+                    <span class="text-danger" asp-validation-for="FuelConsumption"></span>
                 </td>
             </tr>
         </tbody>
