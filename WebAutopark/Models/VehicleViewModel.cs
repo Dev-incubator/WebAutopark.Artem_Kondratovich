@@ -19,22 +19,22 @@ namespace WebAutopark.Models
         public string RegistrationNumber { get; set; }
 
         [Required]
-        [Range(0, 100000, ErrorMessage = "Weight must be between 0 and 100000")]
-        public double Weight { get; set; }
+        [Range(0d, 100000d, ErrorMessage = "Weight must be between 0 and 100000")]
+        public double? Weight { get; set; }
 
         [Required]
-        [Range(0, 2500, ErrorMessage = "YearIssue must be between 0 and 2500")]
-        public int YearIssue { get; set; }
+        [Range(0d, 2500d, ErrorMessage = "YearIssue must be between 0 and 2500")]
+        public int? YearIssue { get; set; }
 
         [Required]
-        [Range(0, 1000000, ErrorMessage = "Mileage must be between 0 and 100000")]
-        public double Mileage { get; set; }
+        [Range(0d, 1000000d, ErrorMessage = "Mileage must be between 0 and 100000")]
+        public double? Mileage { get; set; }
 
         [Required]
-        public CarColor Color { get; set; }
+        public CarColor? Color { get; set; }
 
         [Required]
-        [Range(0, 100, ErrorMessage = "FuelConsumption must be between 0 and 100")]
-        public double FuelConsumption { get; set; }
+        [Range(0d, 100d, ErrorMessage = "FuelConsumption must be between 0 and 100")]
+        public double? FuelConsumption { get; set; }
     }
 }

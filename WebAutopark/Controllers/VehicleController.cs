@@ -14,8 +14,7 @@ namespace WebAutopark.Controllers
         private readonly IDtoService<VehicleDto> _vehicleDtoService;
         private readonly IDtoService<VehicleTypeDto> _vehicleTypeDtoService;
 
-        public VehicleController(IMapper mapper,
-            IDtoService<VehicleDto> vehicleDtoService,
+        public VehicleController(IMapper mapper, IDtoService<VehicleDto> vehicleDtoService,
             IDtoService<VehicleTypeDto> vehicleTypeDtoService)
         {
             _mapper = mapper;
@@ -23,24 +22,30 @@ namespace WebAutopark.Controllers
             _vehicleTypeDtoService = vehicleTypeDtoService;
         }
 
+        [NonAction]
         private List<SelectListItem> GetVehicleTypesForSelect()
         {
             var vehicleTypeDtoItems = _vehicleTypeDtoService.GetAllItems();
             var selectItems = new List<SelectListItem>();
+
             foreach (var vehicleType in vehicleTypeDtoItems)
             {
                 selectItems.Add(new SelectListItem { Text = vehicleType.TypeName, Value = vehicleType.VehicleTypeId.ToString() });
             }
+
             return selectItems;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             var vehicleDtoItems = _vehicleDtoService.GetAllItems();
             var vehicleViewModels = _mapper.Map<IEnumerable<VehicleViewModel>>(vehicleDtoItems);
+
             return View(vehicleViewModels);
         }
 
+        [HttpGet]
         public ActionResult Details(int id)
         {
             var vehicleDto = _vehicleDtoService.GetItem(id);
@@ -54,6 +59,7 @@ namespace WebAutopark.Controllers
             return View(vehicleViewModel);
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
             ViewBag.VehicleTypes = GetVehicleTypesForSelect();
@@ -72,9 +78,11 @@ namespace WebAutopark.Controllers
 
             var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
             _vehicleDtoService.Create(vehicleDto);
+
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var vehicleDto = _vehicleDtoService.GetItem(id);
@@ -100,6 +108,7 @@ namespace WebAutopark.Controllers
 
             var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
             _vehicleDtoService.Update(vehicleDto);
+
             return RedirectToAction(nameof(Index));
         }
 

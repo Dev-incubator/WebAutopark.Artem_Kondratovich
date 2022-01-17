@@ -18,6 +18,7 @@ namespace WebAutopark.Controllers
             _vehicleTypeDtoService = vehicleTypeDtoService;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             var vehicleTypeDtoItems = _vehicleTypeDtoService.GetAllItems();
@@ -26,6 +27,7 @@ namespace WebAutopark.Controllers
             return View(vehicleTypeViewModels);
         }
 
+        [HttpGet]
         public ActionResult Create() => View();
 
         [HttpPost]
@@ -43,6 +45,7 @@ namespace WebAutopark.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpGet]
         public ActionResult Edit(int id)
         {
             var vehicleTypeDto = _vehicleTypeDtoService.GetItem(id);

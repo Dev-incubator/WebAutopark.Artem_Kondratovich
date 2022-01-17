@@ -1,14 +1,9 @@
-﻿using System.Diagnostics;
-using Microsoft.AspNetCore.Mvc;
-using WebAutopark.Models;
+﻿using Microsoft.AspNetCore.Mvc;
 
 namespace WebAutopark.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
     }
 }

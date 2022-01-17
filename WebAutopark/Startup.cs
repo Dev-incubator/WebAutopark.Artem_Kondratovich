@@ -9,6 +9,7 @@ using WebAutopark.Core.Entities;
 using WebAutopark.Core.Interfaces;
 using WebAutopark.DatabaseAccess;
 using WebAutopark.DatabaseAccess.Repositories;
+using WebAutopark.Extensions;
 using WebAutopark.Mappings;
 
 namespace WebAutopark
@@ -26,16 +27,10 @@ namespace WebAutopark
         {
             services.AddControllersWithViews();
             services.AddSingleton<IConnectionStringProvider, ConnectionStringProvider>();
-            services.AddScoped<IRepository<Component>, ComponentRepository>();
-            services.AddScoped<IRepository<Vehicle>, VehicleRepository>();
-            services.AddScoped<IRepository<VehicleType>, VehicleTypeRepository>();
-            services.AddScoped<IRepository<Order>, OrderRepository>();
-            services.AddScoped<IRepository<OrderItem>, OrderItemRepository>();
-
-            services.AddScoped<IDtoService<VehicleDto>, VehicleService>();
-            services.AddScoped<IDtoService<VehicleTypeDto>, VehicleTypeService>();
-
             services.AddAutoMapper(typeof(DtoEntityProfile), typeof(ViewModelDtoProfile));
+
+            services.AddRepositories();
+            services.AddDtoServices();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
