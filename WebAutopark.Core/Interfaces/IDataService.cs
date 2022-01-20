@@ -2,7 +2,7 @@
 
 namespace WebAutopark.Core.Interfaces
 {
-    public interface IDtoService<T>
+    public interface IDataService<T>
         where T : class
     {
         IEnumerable<T> GetAllItems();

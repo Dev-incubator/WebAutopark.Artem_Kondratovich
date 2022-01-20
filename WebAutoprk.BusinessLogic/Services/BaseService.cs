@@ -4,7 +4,7 @@ using WebAutopark.Core.Interfaces;
 
 namespace WebAutopark.BusinessLogic.Services
 {
-    public abstract class BaseService<TDto, TEntity> : IDtoService<TDto>
+    public abstract class BaseService<TDto, TEntity> : IDataService<TDto>
         where TDto : class
         where TEntity : class
     {

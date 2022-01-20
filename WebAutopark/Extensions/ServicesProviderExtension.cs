@@ -21,8 +21,8 @@ namespace WebAutopark.Extensions
 
         public static IServiceCollection AddDtoServices(this IServiceCollection services)
         {
-            services.AddScoped<IDtoService<VehicleDto>, VehicleService>();
-            services.AddScoped<IDtoService<VehicleTypeDto>, VehicleTypeService>();
+            services.AddScoped<IDataService<VehicleDto>, VehicleService>();
+            services.AddScoped<IDataService<VehicleTypeDto>, VehicleTypeService>();
             return services;
         }
     }

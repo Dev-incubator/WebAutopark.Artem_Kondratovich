@@ -11,11 +11,11 @@ namespace WebAutopark.Controllers
     public class VehicleController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IDtoService<VehicleDto> _vehicleDtoService;
-        private readonly IDtoService<VehicleTypeDto> _vehicleTypeDtoService;
+        private readonly IDataService<VehicleDto> _vehicleDtoService;
+        private readonly IDataService<VehicleTypeDto> _vehicleTypeDtoService;
 
-        public VehicleController(IMapper mapper, IDtoService<VehicleDto> vehicleDtoService,
-            IDtoService<VehicleTypeDto> vehicleTypeDtoService)
+        public VehicleController(IMapper mapper, IDataService<VehicleDto> vehicleDtoService,
+            IDataService<VehicleTypeDto> vehicleTypeDtoService)
         {
             _mapper = mapper;
             _vehicleDtoService = vehicleDtoService;
