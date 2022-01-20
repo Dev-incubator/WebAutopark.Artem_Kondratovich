@@ -64,7 +64,7 @@ namespace WebAutopark.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return View();
+                return View(componentViewModel);
             }
 
             var componentDto = _mapper.Map<ComponentDto>(componentViewModel);

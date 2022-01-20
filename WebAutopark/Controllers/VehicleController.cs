@@ -103,7 +103,7 @@ namespace WebAutopark.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.VehicleTypes = GetVehicleTypesForSelect();
-                return View();
+                return View(vehicleViewModel);
             }
 
             var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
