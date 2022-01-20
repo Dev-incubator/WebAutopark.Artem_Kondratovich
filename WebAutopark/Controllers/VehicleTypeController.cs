@@ -62,7 +62,7 @@ namespace WebAutopark.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit(VehicleTypeViewModel vehicleTypeViewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View();
             }

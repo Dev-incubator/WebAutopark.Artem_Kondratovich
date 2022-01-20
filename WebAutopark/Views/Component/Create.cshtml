@@ -1,0 +1,17 @@
+﻿@model ComponentViewModel
+
+<form asp-antiforgery="true" method="post" asp-action="Create">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Component</th>
+                <td>
+                    <input type="text" asp-for="Name">
+                    <span class="text-danger" asp-validation-for="Name"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-outline-primary">Create component</button>
+    <button type="reset" class="btn btn-outline-dark">Reset</button>
+</form>

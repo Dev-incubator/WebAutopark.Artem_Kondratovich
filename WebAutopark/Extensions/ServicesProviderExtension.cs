@@ -23,6 +23,9 @@ namespace WebAutopark.Extensions
         {
             services.AddScoped<IDtoService<VehicleDto>, VehicleService>();
             services.AddScoped<IDtoService<VehicleTypeDto>, VehicleTypeService>();
+            services.AddScoped<IDtoService<OrderDto>, OrderService>();
+            services.AddScoped<IDtoService<OrderItemDto>, OrderItemService>();
+            services.AddScoped<IDtoService<ComponentDto>, ComponentService>();
             return services;
         }
     }
