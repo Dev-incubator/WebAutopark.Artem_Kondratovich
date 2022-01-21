@@ -7,7 +7,6 @@ namespace WebAutopark.Models
     {
         public int VehicleId { get; set; }
 
-        [Required]
         public int VehicleTypeId { get; set; }
 
         [Required]

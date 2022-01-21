@@ -7,8 +7,7 @@ namespace WebAutopark.Models
     {
         public int OrderId { get; set; }
 
-        [Required]
-        public int? VehicleId { get; set; }
+        public int VehicleId { get; set; }
 
         [Required]
         [DataType(DataType.Date)]
