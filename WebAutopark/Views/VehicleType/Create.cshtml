@@ -1,0 +1,24 @@
+﻿@model VehicleTypeViewModel
+
+<form method="post" asp-action="Create">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>TypeName</th>
+                <td>
+                    <input type="text" asp-for="TypeName">
+                    <span class="text-danger" asp-validation-for="TypeName"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>TaxCoefficient</th>
+                <td>
+                    <input type="text" asp-for="TaxCoefficient">
+                    <span class="text-danger" asp-validation-for="TaxCoefficient"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-outline-primary">Create vehicle type</button>
+    <button type="reset" class="btn btn-outline-dark">Reset</button>
+</form>

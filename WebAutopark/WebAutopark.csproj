@@ -11,8 +11,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
         <ProjectReference Include="..\WebAutopark.Core\WebAutopark.Core.csproj" />
         <ProjectReference Include="..\WebAutopark.DatabaseAccess\WebAutopark.DatabaseAccess.csproj" />
+        <ProjectReference Include="..\WebAutoprk.BusinessLogic\WebAutopark.BusinessLogic.csproj" />
     </ItemGroup>
 
 </Project>

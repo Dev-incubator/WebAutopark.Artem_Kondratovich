@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace WebAutopark.Core.Entities
+namespace WebAutopark.BusinessLogic.Dto
 {
-    public class Order
+    public class OrderDto
     {
         public int OrderId { get; set; }
         public int VehicleId { get; set; }

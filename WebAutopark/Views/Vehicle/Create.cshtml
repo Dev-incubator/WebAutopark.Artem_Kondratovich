@@ -1,0 +1,66 @@
+﻿@model VehicleViewModel
+
+<form asp-antiforgery="true" method="post" asp-action="Create">
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Model</th>
+                <td>
+                    <input type="text" asp-for="Model">
+                    <span class="text-danger" asp-validation-for="Model"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>VehicleType</th>
+                <td>
+                    @Html.DropDownListFor(m => m.VehicleTypeId,
+                    (IEnumerable<SelectListItem>)ViewBag.VehicleTypes)
+                </td>
+            </tr>
+            <tr>
+                <th>RegistrationNumber</th>
+                <td>
+                    <input type="text" asp-for="RegistrationNumber">
+                    <span class="text-danger" asp-validation-for="RegistrationNumber"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Weight</th>
+                <td>
+                    <input type="text" asp-for="Weight">
+                    <span class="text-danger" asp-validation-for="Weight"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>YearIssue</th>
+                <td>
+                    <input type="text" asp-for="YearIssue" id="datepicker" />
+                    <span class="text-danger" asp-validation-for="YearIssue"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Mileage</th>
+                <td>
+                    <input type="text" asp-for="Mileage">
+                    <span class="text-danger" asp-validation-for="Mileage"></span>
+                </td>
+            </tr>
+            <tr>
+                <th>Color</th>
+                <td>
+                    @Html.DropDownListFor(m => m.Color,
+                    new SelectList(Enum.GetValues(typeof(CarColor))))
+                </td>
+            </tr>
+            <tr>
+                <th>FuelConsumption</th>
+                <td>
+                    <input type="text" asp-for="FuelConsumption">
+                    <span class="text-danger" asp-validation-for="FuelConsumption"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <button type="submit" class="btn btn-outline-primary">Create vehicle</button>
+    <button type="reset" class="btn btn-outline-dark">Reset</button>
+</form>

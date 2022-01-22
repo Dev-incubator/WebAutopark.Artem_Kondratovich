@@ -1,8 +1,8 @@
 ﻿using WebAutopark.Core.Enums;
 
-namespace WebAutopark.Core.Entities
+namespace WebAutopark.BusinessLogic.Dto
 {
-    public class Vehicle
+    public class VehicleDto
     {
         public int VehicleId { get; set; }
         public int VehicleTypeId { get; set; }
