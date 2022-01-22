@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using WebAutopark.BusinessLogic.Dto;
+using WebAutopark.BusinessLogic.Services.Interfaces;
+using WebAutopark.Core.Enums;
 using WebAutopark.Core.Interfaces;
 using WebAutopark.Models;
 
@@ -11,14 +13,14 @@ namespace WebAutopark.Controllers
     public class VehicleController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IDtoService<VehicleDto> _vehicleDtoService;
-        private readonly IDtoService<VehicleTypeDto> _vehicleTypeDtoService;
+        private readonly IVehicleService _vehicleService;
+        private readonly IDataService<VehicleTypeDto> _vehicleTypeDtoService;
 
-        public VehicleController(IMapper mapper, IDtoService<VehicleDto> vehicleDtoService,
-            IDtoService<VehicleTypeDto> vehicleTypeDtoService)
+        public VehicleController(IMapper mapper, IVehicleService vehicleService,
+            IDataService<VehicleTypeDto> vehicleTypeDtoService)
         {
             _mapper = mapper;
-            _vehicleDtoService = vehicleDtoService;
+            _vehicleService = vehicleService;
             _vehicleTypeDtoService = vehicleTypeDtoService;
         }
 
@@ -37,9 +39,13 @@ namespace WebAutopark.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(SortState sortOrder = SortState.ModelAsc)
         {
-            var vehicleDtoItems = _vehicleDtoService.GetAllItems();
+            ViewData["ModelSort"] = sortOrder == SortState.ModelAsc ? SortState.ModelDesc : SortState.ModelAsc;
+            ViewData["VehicleTypeSort"] = sortOrder == SortState.VehicleTypeAsc ? SortState.VehicleTypeDesc : SortState.VehicleTypeAsc;
+            ViewData["MileageSort"] = sortOrder == SortState.MileageAsc ? SortState.MileageDesc : SortState.MileageAsc;
+
+            var vehicleDtoItems = _vehicleService.GetAllSortedItems(sortOrder);
             var vehicleViewModels = _mapper.Map<IEnumerable<VehicleViewModel>>(vehicleDtoItems);
 
             return View(vehicleViewModels);
@@ -48,13 +54,14 @@ namespace WebAutopark.Controllers
         [HttpGet]
         public ActionResult Details(int id)
         {
-            var vehicleDto = _vehicleDtoService.GetItem(id);
+            var vehicleDto = _vehicleService.GetItem(id);
 
             if (vehicleDto is null)
                 return NotFound();
 
             var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleDto);
-            ViewBag.VehicleType = _vehicleTypeDtoService.GetItem(vehicleDto.VehicleTypeId);
+            //var vehicleTypeDto = _vehicleTypeDtoService.GetItem(vehicleDto.VehicleTypeId);
+            //vehicleViewModel.VehicleType = _mapper.Map<VehicleTypeViewModel>(vehicleTypeDto);
 
             return View(vehicleViewModel);
         }
@@ -77,7 +84,7 @@ namespace WebAutopark.Controllers
             }
 
             var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
-            _vehicleDtoService.Create(vehicleDto);
+            _vehicleService.Create(vehicleDto);
 
             return RedirectToAction(nameof(Index));
         }
@@ -85,7 +92,7 @@ namespace WebAutopark.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var vehicleDto = _vehicleDtoService.GetItem(id);
+            var vehicleDto = _vehicleService.GetItem(id);
 
             if (vehicleDto is null)
                 return NotFound();
@@ -107,7 +114,7 @@ namespace WebAutopark.Controllers
             }
 
             var vehicleDto = _mapper.Map<VehicleDto>(vehicleViewModel);
-            _vehicleDtoService.Update(vehicleDto);
+            _vehicleService.Update(vehicleDto);
 
             return RedirectToAction(nameof(Index));
         }
@@ -116,7 +123,7 @@ namespace WebAutopark.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int vehicleId)
         {
-            _vehicleDtoService.Delete(vehicleId);
+            _vehicleService.Delete(vehicleId);
             return RedirectToAction(nameof(Index));
         }
     }

@@ -8,9 +8,9 @@ namespace WebAutopark.Controllers
     public class OrderController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IDtoService<OrderDto> _orderDtoService;
+        private readonly IDataService<OrderDto> _orderDtoService;
 
-        public OrderController(IMapper mapper, IDtoService<OrderDto> orderDtoService)
+        public OrderController(IMapper mapper, IDataService<OrderDto> orderDtoService)
         {
             _mapper = mapper;
             _orderDtoService = orderDtoService;

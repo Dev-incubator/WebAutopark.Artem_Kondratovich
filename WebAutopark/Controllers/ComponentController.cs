@@ -10,9 +10,9 @@ namespace WebAutopark.Controllers
     public class ComponentController : Controller
     {
         private readonly IMapper _mapper;
-        private readonly IDtoService<ComponentDto> _componentDtoService;
+        private readonly IDataService<ComponentDto> _componentDtoService;
 
-        public ComponentController(IMapper mapper, IDtoService<ComponentDto> componentDtoService)
+        public ComponentController(IMapper mapper, IDataService<ComponentDto> componentDtoService)
         {
             _mapper = mapper;
             _componentDtoService = componentDtoService;

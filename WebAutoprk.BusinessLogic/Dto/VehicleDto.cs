@@ -1,4 +1,5 @@
-﻿using WebAutopark.Core.Enums;
+﻿using WebAutopark.Core.Entities;
+using WebAutopark.Core.Enums;
 
 namespace WebAutopark.BusinessLogic.Dto
 {
@@ -6,6 +7,7 @@ namespace WebAutopark.BusinessLogic.Dto
     {
         public int VehicleId { get; set; }
         public int VehicleTypeId { get; set; }
+        public VehicleType VehicleType { get; set; }
         public string Model { get; set; }
         public string RegistrationNumber { get; set; }
         public double Weight { get; set; }
@@ -13,5 +15,6 @@ namespace WebAutopark.BusinessLogic.Dto
         public double Mileage { get; set; }
         public CarColor Color { get; set; }
         public double FuelConsumption { get; set; }
+        public double TankCapacity { get; set; }
     }
 }

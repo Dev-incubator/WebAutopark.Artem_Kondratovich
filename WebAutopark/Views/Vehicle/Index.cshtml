@@ -5,11 +5,24 @@
 <table class="table table-striped">
     <thead>
         <tr>
-            <th>Model</th>
-            <th>RegistrationNumber</th>
+
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.ModelSort">
+                    Model
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.VehicleTypeSort">
+                    VehicleType
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.MileageSort">
+                    Mileage
+                </a>
+            </th>
             <th>YearIssue</th>
             <th>Color</th>
-            <th>Mileage</th>
             <th></th>
         </tr>
     </thead>
@@ -18,10 +31,10 @@
         {
             <tr>
                 <td><a asp-action="Details" asp-route-id="@vehicle.VehicleId">@vehicle.Model</a></td>
-                <td>@vehicle.RegistrationNumber</td>
+                <td>@vehicle.VehicleType.TypeName</td>
+                <td>@vehicle.Mileage</td>
                 <td>@vehicle.YearIssue</td>
                 <td>@vehicle.Color</td>
-                <td>@vehicle.Mileage</td>
                 <td>
                     <div class="btn-group">
                         <form method="post" asp-action="Delete">
