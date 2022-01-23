@@ -2,7 +2,7 @@
 
 <h1 class="display-4">Vehicle types</h1>
 
-<table class="table table-striped">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
             <th>TypeName</th>
@@ -17,11 +17,11 @@
                 <td>@vehicleType.TypeName</td>
                 <td>@vehicleType.TaxCoefficient</td>
                 <td>
-                    <div class="btn-group">
+                    <div class="btn-group float-right">
                         <form method="post" asp-action="Delete">
                             <input type="hidden" name="vehicleTypeId" value=@vehicleType.VehicleTypeId>
-                            <a type="button" asp-action="Edit" asp-route-id="@vehicleType.VehicleTypeId" class="btn btn-secondary">Edit</a>
-                            <button type="submit" class="btn btn-dark">Delete</button>
+                            <a type="button" asp-action="Edit" asp-route-id="@vehicleType.VehicleTypeId" class="btn btn-warning">Edit</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
                 </td>
@@ -29,4 +29,4 @@
         }
     </tbody>
 </table>
-<a type="button" asp-action="Create" class="btn btn-outline-dark btn-lg btn-block">Add vehicle type</a>
+<a type="button" asp-action="Create" class="btn btn-outline-success btn-block">Add vehicle type</a>

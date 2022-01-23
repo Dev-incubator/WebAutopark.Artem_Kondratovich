@@ -3,12 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using WebAutopark.BusinessLogic.Dto;
-using WebAutopark.BusinessLogic.Services;
-using WebAutopark.Core.Entities;
 using WebAutopark.Core.Interfaces;
 using WebAutopark.DatabaseAccess;
-using WebAutopark.DatabaseAccess.Repositories;
 using WebAutopark.Extensions;
 using WebAutopark.Mappings;
 

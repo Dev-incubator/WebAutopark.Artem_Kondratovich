@@ -11,6 +11,7 @@ namespace WebAutopark.BusinessLogic.Services
     public class VehicleService : BaseService<VehicleDto, Vehicle>, IVehicleService
     {
         private readonly IVehicleRepository _vehicleRepository;
+
         public VehicleService(IMapper mapper, IVehicleRepository vehicleRepository)
             : base(mapper, vehicleRepository)
         { 

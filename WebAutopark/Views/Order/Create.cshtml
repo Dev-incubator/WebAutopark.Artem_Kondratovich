@@ -1,0 +1,17 @@
+﻿@model OrderViewModel
+
+<p class="lead">Are you sure you want to place an order?</p>
+
+<form asp-antiforgery="true" method="post" asp-action="Create">
+    <input type="hidden" asp-for="VehicleId">
+    <div class="form-group">
+        <label asp-for="Date">Order date</label>
+        <input type="datetime" asp-format="{0:dd/MM/yyyy HH:mm}" asp-for="Date" class="form-control" readonly>
+    </div>
+    <div class="form-group">
+        <label asp-for="Vehicle.Model">Order for</label>
+        <input asp-for="Vehicle.Model" class="form-control" value="@Model.Vehicle.Model" readonly>
+    </div>
+    <button type="submit" class="btn btn-success">Yes</button>
+    <a type="button" asp-controller="Vehicle" asp-action="Index" class="btn btn-danger">No</a>
+</form>

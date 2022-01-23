@@ -16,8 +16,8 @@ namespace WebAutopark.Extensions
             services.AddScoped<IRepository<Component>, ComponentRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<IRepository<VehicleType>, VehicleTypeRepository>();
-            services.AddScoped<IRepository<Order>, OrderRepository>();
-            services.AddScoped<IRepository<OrderItem>, OrderItemRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
+            services.AddScoped<IOrderItemRepository, OrderItemRepository>();
             return services;
         }
 
@@ -25,8 +25,8 @@ namespace WebAutopark.Extensions
         {
             services.AddScoped<IVehicleService, VehicleService>();
             services.AddScoped<IDataService<VehicleTypeDto>, VehicleTypeService>();
-            services.AddScoped<IDataService<OrderDto>, OrderService>();
-            services.AddScoped<IDataService<OrderItemDto>, OrderItemService>();
+            services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<IOrderItemService, OrderItemService>();
             services.AddScoped<IDataService<ComponentDto>, ComponentService>();
             return services;
         }

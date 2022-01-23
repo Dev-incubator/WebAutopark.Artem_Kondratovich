@@ -41,9 +41,9 @@ namespace WebAutopark.Controllers
         [HttpGet]
         public ActionResult Index(SortState sortOrder = SortState.ModelAsc)
         {
-            ViewData["ModelSort"] = sortOrder == SortState.ModelAsc ? SortState.ModelDesc : SortState.ModelAsc;
-            ViewData["VehicleTypeSort"] = sortOrder == SortState.VehicleTypeAsc ? SortState.VehicleTypeDesc : SortState.VehicleTypeAsc;
-            ViewData["MileageSort"] = sortOrder == SortState.MileageAsc ? SortState.MileageDesc : SortState.MileageAsc;
+            ViewBag.ModelSort = sortOrder == SortState.ModelAsc ? SortState.ModelDesc : SortState.ModelAsc;
+            ViewBag.VehicleTypeSort = sortOrder == SortState.VehicleTypeAsc ? SortState.VehicleTypeDesc : SortState.VehicleTypeAsc;
+            ViewBag.MileageSort = sortOrder == SortState.MileageAsc ? SortState.MileageDesc : SortState.MileageAsc;
 
             var vehicleDtoItems = _vehicleService.GetAllSortedItems(sortOrder);
             var vehicleViewModels = _mapper.Map<IEnumerable<VehicleViewModel>>(vehicleDtoItems);
@@ -60,8 +60,6 @@ namespace WebAutopark.Controllers
                 return NotFound();
 
             var vehicleViewModel = _mapper.Map<VehicleViewModel>(vehicleDto);
-            //var vehicleTypeDto = _vehicleTypeDtoService.GetItem(vehicleDto.VehicleTypeId);
-            //vehicleViewModel.VehicleType = _mapper.Map<VehicleTypeViewModel>(vehicleTypeDto);
 
             return View(vehicleViewModel);
         }

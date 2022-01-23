@@ -11,7 +11,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <None Include="Views\Order\Index.cshtml" />
+      <None Include="Views\Order\Create.cshtml" />
     </ItemGroup>
 
     <ItemGroup>
@@ -22,6 +22,10 @@
         <ProjectReference Include="..\WebAutopark.Core\WebAutopark.Core.csproj" />
         <ProjectReference Include="..\WebAutopark.DatabaseAccess\WebAutopark.DatabaseAccess.csproj" />
         <ProjectReference Include="..\WebAutoprk.BusinessLogic\WebAutopark.BusinessLogic.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="wwwroot\Files\" />
     </ItemGroup>
 
 </Project>

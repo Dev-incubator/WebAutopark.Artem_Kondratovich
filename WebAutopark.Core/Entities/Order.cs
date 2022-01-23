@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace WebAutopark.Core.Entities
 {
@@ -6,6 +7,7 @@ namespace WebAutopark.Core.Entities
     {
         public int OrderId { get; set; }
         public int VehicleId { get; set; }
+        public Vehicle Vehicle { get; set; }
         public DateTime Date { get; set; }
     }
 }

@@ -1,0 +1,17 @@
+﻿@model OrderItemViewModel
+
+<p class="lead">Add component to order</p>
+
+<form asp-antiforgery="true" method="post" asp-action="Create">
+    <div class="form-group">
+        <input type="hidden" asp-for="@Model.OrderId">
+        <div class="form-inline justify-content-between">
+            @Html.DropDownListFor(o => o.ComponentId,
+            (IEnumerable<SelectListItem>)ViewBag.Components,
+            new {@class = "custom-select w-75 pr-2"})
+            <input type="number" class="form-control" asp-for="@Model.Quantity" placeholder="Quantity">
+        </div>
+        <span class="text-danger" asp-validation-for="@Model.Quantity"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Add</button>
+</form>
