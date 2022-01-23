@@ -6,6 +6,6 @@ namespace WebAutopark.Core.Interfaces.Repositories
 {
     public interface IVehicleRepository : IRepository<Vehicle>
     {
-        public IEnumerable<Vehicle> GetAllSortedItems(SortState sortOrder);
+        IEnumerable<Vehicle> GetAllSortedItems(SortState sortOrder);
     }
 }

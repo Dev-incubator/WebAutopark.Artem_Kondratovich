@@ -4,6 +4,6 @@ namespace WebAutopark.Core.Interfaces.Repositories
 {
     public interface IOrderRepository : IRepository<Order>
     {
-        public int CreateAndReturnId(Order item);
+        int CreateAndReturnId(Order item);
     }
 }

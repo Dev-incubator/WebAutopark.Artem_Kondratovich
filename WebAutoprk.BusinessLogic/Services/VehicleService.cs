@@ -22,6 +22,7 @@ namespace WebAutopark.BusinessLogic.Services
         {
             var entities = _vehicleRepository.GetAllSortedItems(sortOrder);
             var dtoItems = _mapper.Map<IEnumerable<VehicleDto>>(entities);
+
             return dtoItems;
         }
     }

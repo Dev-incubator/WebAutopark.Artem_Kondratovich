@@ -42,6 +42,21 @@ namespace WebAutopark.DatabaseAccess.Repositories
             base(connectionStringProvider)
         { }
 
+        private string GetQueryWithOrderBy(string query, SortState sortOrder)
+        {
+            return sortOrder switch
+            {
+                SortState.IdDesc => $"{query} ORDER BY VehicleId DESC",
+                SortState.ModelAsc => $"{query} ORDER BY Model ASC",
+                SortState.ModelDesc => $"{query} ORDER BY Model DESC",
+                SortState.VehicleTypeAsc => $"{query} ORDER BY TypeName ASC",
+                SortState.VehicleTypeDesc => $"{query} ORDER BY TypeName DESC",
+                SortState.MileageAsc => $"{query} ORDER BY Mileage ASC",
+                SortState.MileageDesc => $"{query} ORDER BY Mileage DESC",
+                _ => $"{query} ORDER BY VehicleId ASC"
+            };
+        }
+
         public void Create(Vehicle item) => Connection.Execute(QueryCreate, item);
 
         public void Delete(int id) => Connection.Execute(QueryDelete, new { id });
@@ -52,15 +67,8 @@ namespace WebAutopark.DatabaseAccess.Repositories
 
         public IEnumerable<Vehicle> GetAllSortedItems(SortState sortOrder)
         {
-            var queryGetAllSortedItems = sortOrder switch
-            {
-                SortState.ModelDesc => $"{QueryGetAll} ORDER BY Model DESC",
-                SortState.VehicleTypeAsc => $"{QueryGetAll} ORDER BY TypeName ASC",
-                SortState.VehicleTypeDesc => $"{QueryGetAll} ORDER BY TypeName DESC",
-                SortState.MileageAsc => $"{QueryGetAll} ORDER BY Mileage ASC",
-                SortState.MileageDesc => $"{QueryGetAll} ORDER BY Mileage DESC",
-                _ => $"{QueryGetAll} ORDER BY Model ASC"
-            };
+            var queryGetAllSortedItems = GetQueryWithOrderBy(QueryGetAll, sortOrder);
+
             return Connection.Query<Vehicle, VehicleType, Vehicle>(
                 queryGetAllSortedItems,
                 (vehicle, vehicleType) =>

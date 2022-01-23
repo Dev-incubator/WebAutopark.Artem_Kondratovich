@@ -5,6 +5,6 @@ namespace WebAutopark.BusinessLogic.Services.Interfaces
 {
     public interface IOrderService : IDataService<OrderDto>
     {
-        public int CreateAndReturnId(OrderDto item);
+        int CreateAndReturnId(OrderDto item);
     }
 }

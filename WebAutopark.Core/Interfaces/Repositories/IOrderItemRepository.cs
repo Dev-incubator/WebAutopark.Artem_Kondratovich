@@ -5,6 +5,6 @@ namespace WebAutopark.Core.Interfaces.Repositories
 {
     public interface IOrderItemRepository : IRepository<OrderItem>
     {
-        public IEnumerable<OrderItem> GetItemsByOrderId(int orderId);
+        IEnumerable<OrderItem> GetItemsByOrderId(int orderId);
     }
 }

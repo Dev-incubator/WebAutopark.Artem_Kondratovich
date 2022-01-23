@@ -2,6 +2,8 @@
 {
     public enum SortState
     {
+        IdAsc,
+        IdDesc,
         ModelAsc,    
         ModelDesc,   
         VehicleTypeAsc, 

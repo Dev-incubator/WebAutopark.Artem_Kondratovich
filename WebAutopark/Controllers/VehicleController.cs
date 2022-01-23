@@ -39,7 +39,7 @@ namespace WebAutopark.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(SortState sortOrder = SortState.ModelAsc)
+        public ActionResult Index(SortState sortOrder = SortState.IdAsc)
         {
             ViewBag.ModelSort = sortOrder == SortState.ModelAsc ? SortState.ModelDesc : SortState.ModelAsc;
             ViewBag.VehicleTypeSort = sortOrder == SortState.VehicleTypeAsc ? SortState.VehicleTypeDesc : SortState.VehicleTypeAsc;
