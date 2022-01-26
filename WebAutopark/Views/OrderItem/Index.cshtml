@@ -1,0 +1,25 @@
+﻿@model IEnumerable<OrderItemViewModel>
+
+<h1 class="display-4">Order components</h1>
+
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Component name</th>
+            <th>Quantity</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orderComponent in Model)
+        {
+            <tr>
+                <td>@orderComponent.Component.Name</td>
+                <td>@orderComponent.Quantity</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a type="button" asp-action="Create" asp-route-orderId="@ViewBag.OrderId" class="btn btn-outline-success btn-block btn-sm">Add Component to order</a>
+

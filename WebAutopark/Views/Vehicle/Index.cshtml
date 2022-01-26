@@ -2,14 +2,25 @@
 
 <h1 class="display-4">Vehicles</h1>
 
-<table class="table table-striped">
+<table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th>Model</th>
-            <th>RegistrationNumber</th>
-            <th>YearIssue</th>
-            <th>Color</th>
-            <th>Mileage</th>
+
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.ModelSort">
+                    Model
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.VehicleTypeSort">
+                    VehicleType
+                </a>
+            </th>
+            <th>
+                <a asp-action="Index" asp-route-sortOrder="@ViewBag.MileageSort">
+                    Mileage
+                </a>
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -18,16 +29,15 @@
         {
             <tr>
                 <td><a asp-action="Details" asp-route-id="@vehicle.VehicleId">@vehicle.Model</a></td>
-                <td>@vehicle.RegistrationNumber</td>
-                <td>@vehicle.YearIssue</td>
-                <td>@vehicle.Color</td>
+                <td>@vehicle.VehicleType.TypeName</td>
                 <td>@vehicle.Mileage</td>
                 <td>
-                    <div class="btn-group">
+                    <div class="btn-group float-right">
                         <form method="post" asp-action="Delete">
+                            <a type="button" asp-controller="Order" asp-action="Create" asp-route-vehicleId="@vehicle.VehicleId" asp-route-vehicleModelName="@vehicle.Model" class="mr-5 btn btn-primary">Create Order</a>
                             <input type="hidden" name="vehicleId" value=@vehicle.VehicleId>
-                            <a type="button" asp-action="Edit" asp-route-id="@vehicle.VehicleId" class="btn btn-secondary">Edit</a>
-                            <button type="submit" class="btn btn-dark">Delete</button>
+                            <a type="button" asp-action="Edit" asp-route-id="@vehicle.VehicleId" class="btn btn-warning">Edit</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
                         </form>
                     </div>
                 </td>
@@ -35,4 +45,4 @@
         }
     </tbody>
 </table>
-<a type="button" asp-action="Create" class="btn btn-outline-dark btn-lg btn-block">Add vehicle</a>
+<a type="button" asp-action="Create" class="btn btn btn-outline-success btn-block">Add vehicle</a>

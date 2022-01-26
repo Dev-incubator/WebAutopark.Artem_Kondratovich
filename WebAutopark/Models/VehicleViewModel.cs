@@ -1,10 +1,15 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using WebAutopark.Core.Entities;
 using WebAutopark.Core.Enums;
 
 namespace WebAutopark.Models
 {
     public class VehicleViewModel
     {
+        private const double WeightCoefficient = 0.0013d;
+        private const double TaxCoefficient = 30d;
+        private const double TaxPerMonthAddition = 5d;
+
         public int VehicleId { get; set; }
 
         public int VehicleTypeId { get; set; }
@@ -35,5 +40,18 @@ namespace WebAutopark.Models
         [Required]
         [Range(0d, 100d, ErrorMessage = "FuelConsumption must be between 0 and 100")]
         public double? FuelConsumption { get; set; }
+
+        [Required]
+        [Range(0d, 1000d, ErrorMessage = "TankCapacity must be between 0 and 100")]
+        public double? TankCapacity { get; set; }
+
+        public VehicleType VehicleType { get; set; }
+
+        public double? GetCalcTaxPerMonth()
+            => (Weight * WeightCoefficient) + (VehicleType.TaxCoefficient * TaxCoefficient) + TaxPerMonthAddition;
+
+        public double? GetCalcMaxKm() => FuelConsumption != 0
+            ? TankCapacity / FuelConsumption
+            : TankCapacity;
     }
 }

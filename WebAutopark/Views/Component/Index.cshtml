@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ComponentViewModel>;
+
+<h1 class="display-4">Components</h1>
+
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Component name</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var component in Model)
+        {
+            <tr>
+                <td>@component.Name</td>
+                <td>
+                    <div class="btn-group float-right">
+                        <form method="post" asp-action="Delete">
+                            <input type="hidden" name="componentId" value=@component.ComponentId>
+                            <a type="button" asp-action="Edit" asp-route-id="@component.ComponentId" class="btn btn-warning">Edit</a>
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a type="button" asp-action="Create" class="btn btn-outline-success btn-block">Add component</a>

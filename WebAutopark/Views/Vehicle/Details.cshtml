@@ -10,7 +10,7 @@
         </tr>
         <tr>
             <th>VehicleType</th>
-            <td>@ViewBag.VehicleType.TypeName</td>
+            <td>@Model.VehicleType.TypeName</td>
         </tr>
         <tr>
             <th>Weight</th>
@@ -31,6 +31,18 @@
         <tr>
             <th>FuelConsumption</th>
             <td>@Model.FuelConsumption</td>
+        </tr>
+        <tr>
+            <th>TankCapacity</th>
+            <td>@Model.TankCapacity</td>
+        </tr>
+        <tr class="table-info">
+            <th>Tax per month</th>
+            <td>@Model.GetCalcTaxPerMonth()</td>
+        </tr>
+        <tr class="table-info">
+            <th>Mileage per tank</th>
+            <td>@Model.GetCalcMaxKm()</td>
         </tr>
     </tbody>
 </table>
